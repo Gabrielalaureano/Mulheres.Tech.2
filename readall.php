@@ -1,20 +1,24 @@
 <?php
 
-require('config/config.php');
+// Importa configuração do aplicativo:
+require('includes/config.php');
 
-// Monta query de consulta para TODOs os registros:
+// Monta query de consulta para TODOS os registros:
 $sql = <<<SQL
 
-SELECT uid, name, email, 
+SELECT uid, name, email,
+    -- Formata a data para nosso formato.
     DATE_FORMAT(udate, '%d/%m/%Y %H:%i:%s') as udatebr
-FROM users WHERE ustatus != 'deleted';
+FROM users 
+-- Nunca obter usuários com ustatus = 'deleted'.
+WHERE ustatus != 'deleted';
 
 SQL;
 
 // Executa a query e armazena resultado em $res:
 $res = $conn->query($sql);
 
-// Variável com a tabela de usuários:
+// Cria variável de saída com a tabela de usuários:
 $userlist = <<<HTML
 
 <h1>Usuários cadastrados</h1>
@@ -33,6 +37,7 @@ HTML;
 // Loop que itera cada usuário:
 while ($user = $res->fetch_assoc()) :
 
+    // Concatena (.=) uma linha com dados do usuário na tabela:
     $userlist .= <<<HTML
 
 <tr>
@@ -49,8 +54,11 @@ while ($user = $res->fetch_assoc()) :
 
 HTML;
 
+// Fecha o loop:
 endwhile;
 
+// Fecha a variável de saída:
 $userlist .= '</table>';
 
+// Envia a variável de saída com os dados dos usuários tabelados:
 echo $userlist;

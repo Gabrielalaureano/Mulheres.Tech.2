@@ -12,7 +12,10 @@ if ($id == 0) die('Ooops! Acesso inválido...');
 // Monta a query.
 $sql = <<<SQL
 
-SELECT * FROM users WHERE uid = '{$id}' AND ustatus != 'deleted';
+SELECT * FROM users 
+WHERE uid = '{$id}'
+      -- Nuca obter usuários com ustatus = 'deleted'
+     AND ustatus != 'deleted';
 
 SQL;
 
