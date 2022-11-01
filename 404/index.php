@@ -1,7 +1,7 @@
 <?php
 
 // Importa o arquivo de configuração:
-require('config.php');
+require($_SERVER['DOCUMENT_ROOT'] . 'inc/_config.php');
 
 /***********************************************
  * Todo o código PHP desta página começa aqui! *
@@ -15,15 +15,15 @@ $page_title = 'Erro 404';
  ************************************************/
 
 // Importa cabeçalho do tema:
-require('header.php');
+require($_SERVER['DOCUMENT_ROOT'] . 'inc/_header.php');
 
 /********************************************************
  * Todo o conteúdo VISUAL da página (HTML) começa aqui! *
  ********************************************************/
 ?>
 
-<h2>Ooooops!</h2>
-<p> A pagina que você tentou acessar não está disponível</p>
+<h2>Oooops!</h2>
+<p>A página que você está tentando acessar está indisponível ou não existe...</p>
 
 <?php
 /*********************************************************
@@ -31,5 +31,5 @@ require('header.php');
  *********************************************************/
 
 // Importa rodapé do tema:
-require('footer.php');
+require($_SERVER['DOCUMENT_ROOT'] . 'inc/_footer.php');
 ?>
